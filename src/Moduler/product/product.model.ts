@@ -8,7 +8,7 @@ const productSchema = new Schema<Tproduct>({
     releaseDate: { type: Date, required: true },
     brand: { type: String, required: true },
     model: { type: String, required: true },
-    operatingSystem: { type: String, required: true },
+    operatingSystem: { type: String, enum: ['andriod', 'iOS'], required: true },
     ram: { type: String, required: true },
     waterResistance: { type: Boolean, required: true },
     storageCapacity: { type: String, required: true },

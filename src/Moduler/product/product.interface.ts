@@ -5,7 +5,7 @@ export interface Tproduct {
     releaseDate: Date;
     brand: string;
     model: string;
-    operatingSystem: string;
+    operatingSystem: 'andriod' | 'iOS';
     ram: string;
     waterResistance: boolean;
     storageCapacity: string;

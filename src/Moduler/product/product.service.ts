@@ -20,13 +20,17 @@ const updateProductFromDB = async (id: string, payload: Partial<Tproduct>) => {
 }
 const getProductFromDB = async (query: Record<string, unknown>) => {
 
-    const { price } = query
+    const { price, releaseDate } = query
+
+    const date = new Date(releaseDate as string)
+
+    const dateQuery = productModel.find({ releaseDate: date })
 
 
     const lowPrice = Number((price as string)?.split("-")[0] || 0)
     const highPrice = Number((price as string)?.split("-")[1] || 1000000000000000)
 
-    const priceQuery = productModel.find({ price: { $gte: lowPrice, $lte: highPrice } })
+    const priceQuery = dateQuery.find({ price: { $gte: lowPrice, $lte: highPrice } })
 
     const phoneSearchFields = ['model', 'brand', 'name']
     const queryObj = { ...query }
@@ -42,7 +46,7 @@ const getProductFromDB = async (query: Record<string, unknown>) => {
         }))
     })
 
-    const excludeFields = ['searchTerm', 'price']
+    const excludeFields = ['searchTerm', 'price', 'name', 'releaseDate']
     excludeFields.forEach(el => delete queryObj[el])
 
     const filterQuery = await searchQuery.find(queryObj)
