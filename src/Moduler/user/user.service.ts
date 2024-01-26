@@ -46,6 +46,7 @@ const loginIntoDB = async (payload: Tlogin) => {
     }
 
     const jwtPayLoad = {
+        id: (user._id).toString(),
         name: user.name,
         email: user.email
     }

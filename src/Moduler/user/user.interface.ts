@@ -14,6 +14,7 @@ export interface Tlogin {
     password: string;
 }
 export interface TjwtPayLoad {
+    id: string;
     name: string;
     email: string;
 }

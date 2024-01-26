@@ -5,7 +5,7 @@ import jwt, { JwtPayload } from 'jsonwebtoken'
 import config from "../config"
 import { userModel } from "../Moduler/user/user.model"
 
-const auth = (...requiredRoles: ('admin' | 'user')[]) => {
+const auth = () => {
     return catchAsync(async (req, res, next) => {
         const token = req.headers.authorization
 
@@ -14,16 +14,13 @@ const auth = (...requiredRoles: ('admin' | 'user')[]) => {
         }
         const decoded = jwt.verify(token, config.token_secret as string) as JwtPayload
 
-        const { role, _id } = decoded
+        const { id } = decoded
 
-        const isUserExists = await userModel.findById(_id)
+        const isUserExists = await userModel.findById(id)
         if (!isUserExists) {
             throw new AppError(httpStatus.BAD_REQUEST, "User doesn't exists!")
         }
 
-        if (requiredRoles && !requiredRoles.includes(role)) {
-            throw new AppError(httpStatus.UNAUTHORIZED, "You do not have the necessary permissions to access this resource.You are not authorized!")
-        }
         req.user = decoded as JwtPayload
         next()
     })
