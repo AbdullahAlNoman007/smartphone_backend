@@ -1,5 +1,4 @@
 export interface Tproduct {
-    id: string;
     name: string;
     price: number;
     quantity: number;

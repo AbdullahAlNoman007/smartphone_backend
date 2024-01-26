@@ -17,6 +17,30 @@ const productValidationSchema = z.object({
         batteryLife: z.string(),
     })
 })
+const productUpdateSchema = z.object({
+    body: z.object({
+        name: z.string().optional(),
+        price: z.number().optional(),
+        quantity: z.number().optional(),
+        releaseDate: z.string().optional(),
+        brand: z.string().optional(),
+        model: z.string().optional(),
+        operatingSystem: z.string().optional(),
+        ram: z.string().optional(),
+        waterResistance: z.boolean().optional(),
+        storageCapacity: z.string().optional(),
+        screenSize: z.string().optional(),
+        cameraQuality: z.string().optional(),
+        batteryLife: z.string().optional(),
+    })
+})
+const productDelete = z.object({
+    body: z.object({
+        id: z.array(z.string())
+    })
+})
 export const productValidation = {
-    productValidationSchema
+    productValidationSchema,
+    productDelete,
+    productUpdateSchema
 }
