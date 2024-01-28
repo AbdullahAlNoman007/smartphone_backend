@@ -5,9 +5,10 @@ import globalErrorHandle from './middleware/globalErrorHandle';
 import router from './router';
 
 const app: Application = express();
+const allowedOrigins = ['http://localhost:5173', 'https://smartphone-frontend.vercel.app'];
 
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 
 app.use('/api', router)
 
