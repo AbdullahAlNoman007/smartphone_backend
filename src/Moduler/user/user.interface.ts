@@ -7,7 +7,7 @@ export interface TpayloadUser {
     name: string;
     email: string;
     password: string;
-    confirmPassword: string;
+    confirmpassword: string;
 }
 export interface Tlogin {
     email: string;

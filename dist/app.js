@@ -10,7 +10,7 @@ const globalErrorHandle_1 = __importDefault(require("./middleware/globalErrorHan
 const router_1 = __importDefault(require("./router"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({ origin: 'http://localhost:5173', credentials: true }));
 app.use('/api', router_1.default);
 app.get('/', (req, res) => {
     res.send("Welcome to Fullstack's Assignment 1 | Redux ");

@@ -19,7 +19,6 @@ const productValidationSchema = z.object({
 })
 const productUpdateSchema = z.object({
     body: z.object({
-        name: z.string().optional(),
         price: z.number().optional(),
         quantity: z.number().optional(),
         releaseDate: z.string().optional(),

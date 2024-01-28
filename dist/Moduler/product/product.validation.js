@@ -21,7 +21,6 @@ const productValidationSchema = zod_1.z.object({
 });
 const productUpdateSchema = zod_1.z.object({
     body: zod_1.z.object({
-        name: zod_1.z.string().optional(),
         price: zod_1.z.number().optional(),
         quantity: zod_1.z.number().optional(),
         releaseDate: zod_1.z.string().optional(),

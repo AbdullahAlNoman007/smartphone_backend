@@ -17,6 +17,7 @@ const createBookingIntoDB = async (payload: Tbuy, id: string) => {
 
     const product = await productModel.findById(id)
     const currentQuantity = product?.quantity as number
+    console.log(product);
     if (currentQuantity <= 0) {
         throw new AppError(httpStatus.BAD_REQUEST, "This product is Out of stock")
     }

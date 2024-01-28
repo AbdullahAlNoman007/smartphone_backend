@@ -15,22 +15,19 @@ const deleteProductFromDB = async (payload: { id: string[] }) => {
     return result
 }
 const updateProductFromDB = async (id: string, payload: Partial<Tproduct>) => {
-    const result = await productModel.findByIdAndUpdate(id, payload)
+
+    const result = await productModel.findByIdAndUpdate(id, payload, { upsert: true })
     return result
 }
 const getProductFromDB = async (query: Record<string, unknown>) => {
 
-    const { price, releaseDate } = query
-
-    const date = new Date(releaseDate as string)
-
-    const dateQuery = productModel.find({ releaseDate: date })
+    const { price } = query
 
 
     const lowPrice = Number((price as string)?.split("-")[0] || 0)
     const highPrice = Number((price as string)?.split("-")[1] || 1000000000000000)
 
-    const priceQuery = dateQuery.find({ price: { $gte: lowPrice, $lte: highPrice } })
+    const priceQuery = productModel.find({ price: { $gte: lowPrice, $lte: highPrice } })
 
     const phoneSearchFields = ['model', 'brand', 'name']
     const queryObj = { ...query }

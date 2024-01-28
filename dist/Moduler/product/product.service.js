@@ -24,16 +24,14 @@ const deleteProductFromDB = (payload) => __awaiter(void 0, void 0, void 0, funct
     return result;
 });
 const updateProductFromDB = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield product_model_1.productModel.findByIdAndUpdate(id, payload);
+    const result = yield product_model_1.productModel.findByIdAndUpdate(id, payload, { upsert: true });
     return result;
 });
 const getProductFromDB = (query) => __awaiter(void 0, void 0, void 0, function* () {
-    const { price, releaseDate } = query;
-    const date = new Date(releaseDate);
-    const dateQuery = product_model_1.productModel.find({ releaseDate: date });
+    const { price } = query;
     const lowPrice = Number((price === null || price === void 0 ? void 0 : price.split("-")[0]) || 0);
     const highPrice = Number((price === null || price === void 0 ? void 0 : price.split("-")[1]) || 1000000000000000);
-    const priceQuery = dateQuery.find({ price: { $gte: lowPrice, $lte: highPrice } });
+    const priceQuery = product_model_1.productModel.find({ price: { $gte: lowPrice, $lte: highPrice } });
     const phoneSearchFields = ['model', 'brand', 'name'];
     const queryObj = Object.assign({}, query);
     let searchTerm = '';

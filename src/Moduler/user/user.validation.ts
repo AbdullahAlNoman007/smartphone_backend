@@ -5,7 +5,7 @@ const userValidationSchema = z.object({
         name: z.string(),
         email: z.string(),
         password: z.string(),
-        confirmPassword: z.string()
+        confirmpassword: z.string()
     })
 })
 

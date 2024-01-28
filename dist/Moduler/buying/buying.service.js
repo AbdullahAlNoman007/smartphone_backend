@@ -27,6 +27,7 @@ const createBookingIntoDB = (payload, id) => __awaiter(void 0, void 0, void 0, f
     payload.saleDate = date;
     const product = yield product_model_1.productModel.findById(id);
     const currentQuantity = product === null || product === void 0 ? void 0 : product.quantity;
+    console.log(product);
     if (currentQuantity <= 0) {
         throw new AppError_1.default(http_status_1.default.BAD_REQUEST, "This product is Out of stock");
     }
