@@ -9,7 +9,7 @@ const notFound_1 = __importDefault(require("./middleware/notFound"));
 const globalErrorHandle_1 = __importDefault(require("./middleware/globalErrorHandle"));
 const router_1 = __importDefault(require("./router"));
 const app = (0, express_1.default)();
-const allowedOrigins = ['http://localhost:5173', 'https://smartphone-frontend.vercel.app', 'https://smartphone-b5757.web.app'];
+const allowedOrigins = ['http://localhost:5173', 'https://smartphone-frontend.vercel.app', 'https://fullstack-1-31cb2.web.app'];
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({ origin: allowedOrigins, credentials: true }));
 app.use('/api', router_1.default);
